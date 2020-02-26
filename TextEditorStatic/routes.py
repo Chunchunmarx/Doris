@@ -3,6 +3,7 @@ import secrets
 from flask import render_template, url_for, flash, redirect, request, g
 from TextEditorStatic import app
 from TextEditorStatic.forms import TextForm, UploadForm, Filepath
+from TextEditorStatic.lib.flaskcode.views import resource_data
 
 nume_fisier = ""
 
@@ -67,8 +68,7 @@ def upload():
 @app.route('/runScript',methods=['GET','POST'] )
 def runScript():
     path = "C:\\Users\\AOprescu\\Desktop\\Texas_Tool\\TestFolder\\test_script.py"
-    #print(g.flaskcode_resource_basepath)
     cmd = "python "
-    cmd += path
+    cmd += resource_data.file_path
     returned_value = os.system(cmd)  
     return redirect('flaskcode')

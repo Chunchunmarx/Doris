@@ -16,6 +16,7 @@ def index():
 @blueprint.route('/resource-data/<path:file_path>.txt', methods=['GET', 'HEAD'])
 def resource_data(file_path):
     file_path = os.path.join(g.flaskcode_resource_basepath, file_path)
+    resource_data.file_path = file_path
     if not (os.path.exists(file_path) and os.path.isfile(file_path)):
         abort(404)
     response = send_file(file_path, mimetype='text/plain', cache_timeout=0)
@@ -46,10 +47,3 @@ def update_resource_data(file_path):
         success = False
         message = 'File data not uploaded'
     return jsonify({'success': success, 'message': message})
-@blueprint.route('/runScript', methods=['GET','POST'])
-def runScript():
-    path = "C:\\Users\\AOprescu\\Desktop\\Flask\\Workspace\\Script\\script.py"
-    cmd = "python "
-    cmd += path
-    returned_value = os.system(cmd)  
-    return redirect('flaskcode')
