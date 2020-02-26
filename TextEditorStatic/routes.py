@@ -8,27 +8,27 @@ from TextEditorStatic.forms import TextForm, UploadForm, Filepath
 nume_fisier = ""
 
 def dir_tree(abs_path, abs_root_path):
-    tree = dict(
-        name=os.path.basename(abs_path),
-        path_name=abs_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
-        children=[]
-    )
-    try:
-        dir_entries = os.listdir(abs_path)
-    except OSError:
-        pass
-    else:
-        for name in dir_entries:
-            new_path = os.path.join(abs_path, name)
-            if os.path.isdir(new_path):
-                tree['children'].append(dir_tree(new_path, abs_root_path))
-            else:
-                tree['children'].append(dict(
-                    name=os.path.basename(new_path),
-                    path_name=new_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
-                    is_file=True,
-                ))
-    return tree
+	tree = dict(
+		name=os.path.basename(abs_path),
+		path_name=abs_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
+		children=[]
+	)
+	try:
+		dir_entries = os.listdir(abs_path)
+	except OSError:
+		pass
+	else:
+		for name in dir_entries:
+			new_path = os.path.join(abs_path, name)
+			if os.path.isdir(new_path):
+				tree['children'].append(dir_tree(new_path, abs_root_path))
+			else:
+				tree['children'].append(dict(
+					name=os.path.basename(new_path),
+					path_name=new_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
+					is_file=True,
+				))
+	return tree
 
 
 
@@ -45,25 +45,37 @@ def index():
 		index.nume_fisier = request.args.get('messages')
 		
 		text_read = open(index.nume_fisier, 'r')
-		content = text_read.read()
+		path = text_read.read()
 		text_read.close()
-		form.text_box.data = content
+		form.text_box.data = path
+		app.config['FLASKCODE_RESOURCE_BASEPATH'] = path
 
 	return render_template('index.html', form=form, dtree=dtree)
 
 @app.route('/success', methods=['GET','POST'])
 def upload():
 	if request.method == 'POST':
-		f = request.files['file']
-		print(request.files)
-		f.save(f.filename)
+		f = request.files['config_file']
+		#print(f.read())
+	
+		
+		path="C:\\Users\\AOprescu\\Desktop\\Texas Tool\\TestFolder"
+		app.config['FLASKCODE_RESOURCE_BASEPATH'] = path
 
-	return redirect(url_for('index', messages=f.filename))
+	return redirect('/flaskcode')
 
 @app.route('/compiled',methods=['GET','POST'] )
 def compile():
+	path = "C:\\Users\\AOprescu\\Desktop\\Flask\\Workspace\\Script\\script.py"
+	cmd = "python "
+	cmd += path
+	returned_value = os.system(cmd)  
+	return redirect('flaskcode')
+
+@app.route('/runScript',methods=['GET','POST'] )
+def runScript():
     path = "C:\\Users\\AOprescu\\Desktop\\Flask\\Workspace\\Script\\script.py"
     cmd = "python "
     cmd += path
     returned_value = os.system(cmd)  
-    return redirect(url_for('index'))
+    return redirect('flaskcode')
