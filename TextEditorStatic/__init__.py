@@ -11,6 +11,7 @@ app.config.from_object(flaskcode.default_config)
 app.config['FLASKCODE_RESOURCE_BASEPATH'] = 'C:/Users/AOprescu/Desktop/flaskcode'
 app.register_blueprint(flaskcode.blueprint, url_prefix='/flaskcode')
 db = SQLAlchemy(app)
+app.path = flaskcode
 
 
 

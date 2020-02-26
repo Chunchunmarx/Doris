@@ -1,9 +1,8 @@
 import os
 import secrets
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, g
 from TextEditorStatic import app
 from TextEditorStatic.forms import TextForm, UploadForm, Filepath
-
 
 nume_fisier = ""
 
@@ -68,8 +67,8 @@ def upload():
 @app.route('/runScript',methods=['GET','POST'] )
 def runScript():
     path = "C:\\Users\\AOprescu\\Desktop\\Texas_Tool\\TestFolder\\test_script.py"
+    #print(g.flaskcode_resource_basepath)
     cmd = "python "
     cmd += path
-    print(flaskcode.update_resource_data)
     returned_value = os.system(cmd)  
     return redirect('flaskcode')
