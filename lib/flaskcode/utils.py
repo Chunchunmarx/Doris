@@ -45,8 +45,6 @@ def write_file(content, filepath, chunk_size=None):
 
 
 def dir_tree(abs_path, abs_root_path, exclude_names=None, excluded_extensions=None, allowed_extensions=None):
-    print(abs_path)
-    #print(abs_root_path)
     tree = dict(
         name=os.path.basename(abs_path),
         path_name=abs_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath

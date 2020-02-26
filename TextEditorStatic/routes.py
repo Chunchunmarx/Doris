@@ -64,18 +64,12 @@ def upload():
 
 	return redirect('/flaskcode')
 
-@app.route('/compiled',methods=['GET','POST'] )
-def compile():
-	path = "C:\\Users\\AOprescu\\Desktop\\Flask\\Workspace\\Script\\script.py"
-	cmd = "python "
-	cmd += path
-	returned_value = os.system(cmd)  
-	return redirect('flaskcode')
 
 @app.route('/runScript',methods=['GET','POST'] )
 def runScript():
-    path = "C:\\Users\\AOprescu\\Desktop\\Flask\\Workspace\\Script\\script.py"
+    path = "C:\\Users\\AOprescu\\Desktop\\Texas_Tool\\TestFolder\\test_script.py"
     cmd = "python "
     cmd += path
+    print(flaskcode.update_resource_data)
     returned_value = os.system(cmd)  
     return redirect('flaskcode')
