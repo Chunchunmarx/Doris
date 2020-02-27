@@ -47,3 +47,5 @@ def update_resource_data(file_path):
         success = False
         message = 'File data not uploaded'
     return jsonify({'success': success, 'message': message})
+
+

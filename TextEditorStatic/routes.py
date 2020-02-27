@@ -1,41 +1,16 @@
 import os
 import secrets
-from flask import render_template, url_for, flash, redirect, request, g
+from flask import render_template, url_for, flash, redirect, request, g , jsonify
 from TextEditorStatic import app
 from TextEditorStatic.forms import TextForm, UploadForm, Filepath
 from TextEditorStatic.lib.flaskcode.views import resource_data
 
 nume_fisier = ""
 
-def dir_tree(abs_path, abs_root_path):
-	tree = dict(
-		name=os.path.basename(abs_path),
-		path_name=abs_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
-		children=[]
-	)
-	try:
-		dir_entries = os.listdir(abs_path)
-	except OSError:
-		pass
-	else:
-		for name in dir_entries:
-			new_path = os.path.join(abs_path, name)
-			if os.path.isdir(new_path):
-				tree['children'].append(dir_tree(new_path, abs_root_path))
-			else:
-				tree['children'].append(dict(
-					name=os.path.basename(new_path),
-					path_name=new_path[len(abs_root_path):].lstrip('/\\'),# TODO: use os.path.relpath
-					is_file=True,
-				))
-	return tree
-
-
-
 @app.route('/', methods=['GET','POST'])
   
 def index():
-	dtree = dir_tree("C:\\Users\\AOprescu\\Desktop\\Tony", "C:\\Users\\AOprescu\\Desktop\\Tony" + '/')
+	
 	form = TextForm()
 	if form.validate_on_submit():
 		text_write = open(index.nume_fisier, 'w')
@@ -50,7 +25,7 @@ def index():
 		form.text_box.data = path
 		app.config['FLASKCODE_RESOURCE_BASEPATH'] = path
 
-	return render_template('index.html', form=form, dtree=dtree)
+	return redirect('/flaskcode')    #render_template('index.html', form=form, dtree=dtree)
 
 @app.route('/success', methods=['GET','POST'])
 def upload():
@@ -72,3 +47,26 @@ def runScript():
     cmd += resource_data.file_path
     returned_value = os.system(cmd)  
     return redirect('flaskcode')
+
+@app.route('/generateUML',methods=['GET','POST'] )
+def generateUML():
+    path = "C:/Users/AOprescu/Desktop/Texas_Tool/Doris/TextEditorStatic/lib/Conversion_App/conversion_app.py "
+    cmd = "python "
+    cmd += path
+    cmd += "1 "
+    cmd += resource_data.file_path
+    cmd += " C:/Users/AOprescu/Desktop/Texas_Tool/Doris/TextEditorStatic/lib"
+    returned_value = os.system(cmd)  
+    return redirect('flaskcode')
+
+@app.route('/generatePython',methods=['GET','POST'] )
+def generatePython():
+    path = "C:/Users/AOprescu/Desktop/Texas_Tool/Doris/TextEditorStatic/lib/Conversion_App/conversion_app.py "
+    cmd = "python "
+    cmd += path
+    cmd += "2 "
+    cmd += resource_data.file_path
+    cmd += " C:/Users/AOprescu/Desktop/Texas_Tool/Doris/TextEditorStatic/lib"
+    returned_value = os.system(cmd)  
+    return redirect('flaskcode')
+
