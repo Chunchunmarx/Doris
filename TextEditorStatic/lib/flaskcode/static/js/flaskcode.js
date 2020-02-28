@@ -241,6 +241,22 @@ flaskcode.setEditorEvents = function (editor) {
         run: flaskcode.onEditorSave,
     });
 
+    // modal action
+    editor.addAction({
+        id: 'modalTest',
+        label: 'Save',
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S],
+        precondition: '!editorReadonly',
+        keybindingContext: '!editorReadonly',
+        contextMenuGroupId: '1_modification',
+        contextMenuOrder: 1.5,
+        run: function (ed) {
+            console.log(1996);
+    var $modal = $('#exampleModal');
+    $modal.modal({show: true, backdrop: 'static'});
+        },
+    });
+
     // reload action
     editor.addAction({
         id: 'reload',
