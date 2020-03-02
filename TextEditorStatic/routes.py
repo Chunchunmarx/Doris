@@ -1,15 +1,18 @@
 import os
 import secrets
 from flask import render_template, url_for, flash, redirect, request, g , jsonify
-from TextEditorStatic import app
+from TextEditorStatic import app, db
 from TextEditorStatic.forms import TextForm, UploadForm, Filepath
+from TextEditorStatic.models import Results
 from TextEditorStatic.lib.flaskcode.views import resource_data
 
 nume_fisier = ""
 
+
 @app.route('/', methods=['GET','POST'])
-  
+
 def index():
+
 	
 	form = TextForm()
 	if form.validate_on_submit():
@@ -24,7 +27,7 @@ def index():
 		text_read.close()
 		form.text_box.data = path
 		app.config['FLASKCODE_RESOURCE_BASEPATH'] = path
-
+	print(Results.query.all())
 	return redirect('/flaskcode')    #render_template('index.html', form=form, dtree=dtree)
 
 @app.route('/success', methods=['GET','POST'])
@@ -45,7 +48,11 @@ def runScript():
     path = "C:\\Users\\AOprescu\\Desktop\\Texas_Tool\\TestFolder\\test_script.py"
     cmd = "python "
     cmd += resource_data.file_path
-    returned_value = os.system(cmd)  
+    returned_value = os.system(cmd) 
+    print(db.session.query(Results).filter_by(test_name='Test default').all())
+    print(returned_value)
+    db.session.add(Results(test_result=returned_value))
+    db.session.commit() 
     return redirect('flaskcode')
 
 @app.route('/generateUML',methods=['GET','POST'] )
