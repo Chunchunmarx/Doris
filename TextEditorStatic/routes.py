@@ -5,6 +5,7 @@ from TextEditorStatic import app, db
 from TextEditorStatic.forms import TextForm, UploadForm, Filepath
 from TextEditorStatic.models import Results
 from TextEditorStatic.lib.flaskcode.views import resource_data
+import ntpath
 
 nume_fisier = ""
 
@@ -48,11 +49,15 @@ def runScript():
     path = "C:\\Users\\AOprescu\\Desktop\\Texas_Tool\\TestFolder\\test_script.py"
     cmd = "python "
     cmd += resource_data.file_path
+
+    head, tail = ntpath.split(resource_data.file_path)
+    file_name = tail or ntpath.basename(head)
+
     returned_value = os.system(cmd) 
-    print(db.session.query(Results).filter_by(test_name='Test default').all())
-    print(returned_value)
-    db.session.add(Results(test_result=returned_value))
+    db.session.add(Results(test_result=returned_value,test_name=file_name))
     db.session.commit() 
+    print(db.session.query(Results).all())
+    print(returned_value)
     return redirect('flaskcode')
 
 @app.route('/generateUML',methods=['GET','POST'] )

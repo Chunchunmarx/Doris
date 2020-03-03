@@ -2,12 +2,16 @@ from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from TextEditorStatic import app, db
 from flask_login import UserMixin
+from TextEditorStatic.lib.flaskcode.views import resource_data
+from pytz import timezone
+
+eastern= timezone('Europe/Bucharest')
 
 
 
 class Results(db.Model):
     id = db.Column(db.Integer,primary_key = True)
-    date= db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    date= db.Column(db.DateTime,nullable=False,default=datetime.now(eastern))
     test_name=db.Column(db.String(60), nullable=False,default='Test default' )
     test_result=db.Column(db.Integer,nullable=False)
 
