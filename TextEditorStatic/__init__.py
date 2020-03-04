@@ -1,7 +1,7 @@
+from TextEditorStatic.config import File_path
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from TextEditorStatic.lib import flaskcode
-from TextEditorStatic.config import File_path
+from lib import flaskcode
 
 app = Flask(__name__)
 

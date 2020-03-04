@@ -1,6 +1,7 @@
 import os
 import json 
 import ntpath
+import sys
 
 
 class File_path:
@@ -15,4 +16,10 @@ class File_path:
 	head, tail = ntpath.split(__file__)
 	conversion_app_path = head
 	conversion_app_path += "\\lib\\Conversion_App\\conversion_app.py"
-	print(conversion_app_path)
+
+	project_path = head
+	lib_path = project_path + '\\lib'
+	sys.path.append(lib_path)
+	sys.path.append(project_path)
+
+
