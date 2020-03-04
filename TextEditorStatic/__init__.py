@@ -5,10 +5,6 @@ from TextEditorStatic.config import File_path
 
 app = Flask(__name__)
 
-
-
-
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config.from_object(flaskcode.default_config)
 app.config['FLASKCODE_RESOURCE_BASEPATH'] = File_path.dict_obj["project_path"]

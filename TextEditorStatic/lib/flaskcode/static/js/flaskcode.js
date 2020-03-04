@@ -241,7 +241,7 @@ flaskcode.setEditorEvents = function (editor) {
         run: flaskcode.onEditorSave,
     });
 
-    // modal action
+    // modal action FOARTE URAT, needs refactor + echivalent html
     editor.addAction({
         id: 'modalTest',
         label: 'Save',
