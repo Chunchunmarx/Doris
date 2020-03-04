@@ -2,8 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from TextEditorStatic.lib import flaskcode
 from TextEditorStatic.config import File_path
-import os
-import json 
 
 app = Flask(__name__)
 
