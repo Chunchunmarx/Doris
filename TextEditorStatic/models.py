@@ -1,7 +1,5 @@
 from datetime import datetime
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from TextEditorStatic import app, db
-from flask_login import UserMixin
 from TextEditorStatic.lib.flaskcode.views import resource_data
 from pytz import timezone
 
