@@ -37,16 +37,52 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Generate Python or UML</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-footer">
+            <a href="/generateUML" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate UML</span></a>
+                    &nbsp;|&nbsp;
+
+            <a href="/generatePython" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate Python</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--/Modals-->
 
     <div id="page-row" class="row">
-        <div id="flaskcode-list" class="col-md-2 col-sm-3 col-xs-3">
-            <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
-            <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
-            <div class="list-container">
-                {{ render_dir_tree(dtree, 'dir-tree') }}
+        <div class="col-md-2 col-sm-3 col-xs-3">
+       
+            <div id="flaskcode-list" class="row" >
+                <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
+                <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
+                <div class="list-container">
+                    {{ render_dir_tree(dtree, 'dir-tree') }}
+
+                </div>
+                <br/><br/>
             </div>
-        </div>
+             <div id="flaskcode-list" class="row">
+                <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
+                <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
+                <div class="list-container">
+                    {{ render_dir_tree(dtree, 'dir-tree') }}
+
+                </div>
+            </div>       
+      
+    </div>
+
+
         <div id="flaskcode-content" class="col-md-10 col-sm-9 col-xs-9">
             <div id="editor-header" class="editor-header well well-sm mb-0">
                 <strong><i class="fa fa-code" aria-hidden="true"></i> {{ app_title }}</strong>
@@ -57,13 +93,12 @@
                     <i id="resource-mod" class="text-danger fa fa-asterisk" aria-hidden="true" style="display:none;"></i>
                 </span>
                 <span class="pull-right hidden-xs" id="header-action-group">
-                    <button id="myBtn">Open Modal</button>
+                    
 
-                    <a href="/generateUML" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate UML</span></a>
+                    <a href="javascript:void(0);" class="header-actions" data-action-id="modalTest" title="Generate"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Generate </span></a>
                     &nbsp;|&nbsp;
 
-                    <a href="/generatePython" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate Python</span></a>
-                    &nbsp;|&nbsp;
+                    
                     <a href="/runScript" class="header-actions" data-action-id="save" title="Run"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Run</span></a>
                     &nbsp;|&nbsp;
                     <a href="javascript:void(0);" class="header-actions" data-action-id="save" title="Save"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Save</span></a>
