@@ -1,3 +1,4 @@
-TextEditorStatic/__pycache__/*
+TextEditorStatic/__pycache__/
+TextEditorStatic/lib/flaskcode/__pycache__/
+__pycache__/
 
-__pycache__/*

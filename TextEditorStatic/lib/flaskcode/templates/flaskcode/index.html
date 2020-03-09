@@ -60,18 +60,18 @@
     <!--/Modals-->
 
     <div id="page-row" class="row">
-        <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="col-md-2 col-sm-3 col-xs-3 dir-tree" id="dir-wrapper">
        
             <div id="flaskcode-list" class="row" >
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
                 <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
                 <div class="list-container">
                     {{ render_dir_tree(dtree, 'dir-tree') }}
-
                 </div>
-                <br/><br/>
+
             </div>
-             <div id="flaskcode-list" class="row">
+             <div id="dragbar"></div>
+             <div id="secondary-list" class="row">
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
                 <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
                 <div class="list-container">
