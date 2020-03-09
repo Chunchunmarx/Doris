@@ -34,7 +34,7 @@ export var PLAINTEXT_MODE_ID = 'plaintext';
 export var PLAINTEXT_LANGUAGE_IDENTIFIER = new LanguageIdentifier(PLAINTEXT_MODE_ID, 1 /* PlainText */);
 ModesRegistry.registerLanguage({
     id: PLAINTEXT_MODE_ID,
-    extensions: ['.txt', '.gitignore'],
+    extensions: ['.txt', '.gitignore', '.wsd'],
     aliases: [nls.localize('plainText.alias', "Plain Text"), 'text'],
     mimetypes: ['text/plain']
 });

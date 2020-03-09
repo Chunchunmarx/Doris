@@ -3,17 +3,17 @@
 import os
 import click
 from flask import Flask, request, make_response
-from . import blueprint, default_config, __pkginfo__
-
+from . import blueprint, __pkginfo__
+from Configuration import Configuration
 
 help_str = """Run {app_title} with given RESOURCE_BASEPATH or current working directory.
 
 All options can be set on the command line or through environment
 variables of the form FLASKCODE_*. For example FLASKCODE_USERNAME.
-""".format(app_title=default_config.FLASKCODE_APP_TITLE)
+""".format(app_title=Configuration.get_instance().get_app_name())
 
 
-def add_auth(blueprint, username, password, realm=default_config.FLASKCODE_APP_TITLE):
+def add_auth(blueprint, username, password, realm=Configuration.get_instance().get_app_name()):
     @blueprint.before_request
     def http_basic_auth():
         auth = request.authorization
@@ -27,7 +27,6 @@ def add_auth(blueprint, username, password, realm=default_config.FLASKCODE_APP_T
 def create_flask_app(username=None, password=None):
     app = Flask(__name__)
     app.url_map.strict_slashes = False
-    app.config.from_object(default_config)
     if username:
         add_auth(blueprint, username, password)
     app.register_blueprint(blueprint)
@@ -47,7 +46,7 @@ def create_flask_app(username=None, password=None):
 def run(resource_basepath, host, port, username, password, editor_theme, debug, env):
     os.environ.setdefault('FLASK_ENV', env)
     os.environ.setdefault('FLASK_DEBUG', '1' if debug else '0')
-    click.echo('%s CLI: %s' % (default_config.FLASKCODE_APP_TITLE, resource_basepath))
+    click.echo('%s CLI: %s' % (Configuration.get_instance().get_app_name(), resource_basepath))
     click.echo('')
     app = create_flask_app(username=username, password=password)
     app.config['FLASKCODE_RESOURCE_BASEPATH'] = resource_basepath

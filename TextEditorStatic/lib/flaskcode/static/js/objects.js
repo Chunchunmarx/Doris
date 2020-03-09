@@ -153,3 +153,40 @@ flaskcode.dirname = function (path) {
 })(jQuery);
 
 
+/* draggables */
+var i = 0;
+var dragging = false;
+   $('#dragbar').mousedown(function(e){
+       e.preventDefault();
+
+       dragging = true;
+       var main = $('#secondary-list');
+       var wrapper = $('#dir-wrapper');
+       var ghostbar = $('<div>',
+                        {id:'ghostbar',
+                         css: {
+                                width: main.outerWidth(),
+                           			top: e.pageY,
+                                left: main.offset().left
+                               }
+                        }).appendTo('#dir-wrapper');
+
+        $(document).mousemove(function(e){
+          ghostbar.css("top", (e.pageY + 2));
+       });
+
+    });
+
+   $(document).mouseup(function(e){
+       if (dragging)
+       {
+           var percentage = ((e.pageY - $('#dir-wrapper').offset().top) / $('#dir-wrapper').height()) * 100;
+           var mainPercentage = 100-percentage;
+
+           $('#flaskcode-list').css("height",percentage + "%");
+           $('#secondary-list').css("height",mainPercentage + "%");
+           $('#ghostbar').remove();
+           $(document).unbind('mousemove');
+           dragging = false;
+       }
+    });

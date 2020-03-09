@@ -1,3 +1,0 @@
-# Doris
-
-Test commit

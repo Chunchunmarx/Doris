@@ -242,3 +242,57 @@ div.editor-container.light-theme .editor-preloader .loading-center-absolute {
     padding-top: 8px;
     padding-bottom: 8px;
 }
+div.editor-container {
+    font-size: 9px;
+}
+
+.list-container {
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+.dir-tree {
+    height: 100%;
+}
+.dir-tree:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+#dir-wrapper {
+  height: 600px;
+}
+
+#flaskcode-list {
+    /*display: flex;*/
+    align-items: flex-end;
+    height:50%;
+    overflow-y: scroll;
+    min-height: 30px;
+    max-height: calc(100% - 30px);
+}
+
+#secondary-list {
+    height: 50%;
+    min-height: 30px;
+    max-height: calc(100% - 30px);
+}
+
+#dragbar {
+   /*background-color: gray;*/
+   height:2px;
+   float: right;
+   width: 100%;
+   cursor: row-resize;
+}
+
+#ghostbar {
+  width: 100%;
+    height: 3px;
+    background-color:#000;
+    opacity:0.5;
+    position:absolute;
+    cursor: col-resize;
+    z-index:999;
+}
