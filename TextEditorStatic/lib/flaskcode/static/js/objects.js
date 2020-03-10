@@ -154,8 +154,8 @@ flaskcode.dirname = function (path) {
 
 
 /* draggables */
- $("#panel-left").resizable({
-   handleSelector: ".splitter",
+ $("#dir-wrapper").resizable({
+   handleSelector: "#splitter-vertical",
    resizeHeight: false
  });
 

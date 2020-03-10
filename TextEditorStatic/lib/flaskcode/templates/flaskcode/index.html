@@ -78,7 +78,6 @@
     <!--/Modals-->
 
     <div id="page-row" class="row">
-<p>{{ url_for('flaskcode.static', filename='js/jquery-resizable.js') }}</p>
         <div id="dir-wrapper" class="col-md-2 col-sm-3 col-xs-3 dir-tree">
             <div id="flaskcode-list" class="row " >
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
@@ -96,6 +95,7 @@
                 </div>
             </div>    
         </div>
+        <div id="splitter-vertical"></div>
         <div id="flaskcode-content" class="col-md-8 col-sm-5 col-xs-9 panel-left">
             <div id="editor-header" class="editor-header well well-sm mb-0">
                 <strong><i class="fa fa-code" aria-hidden="true"></i> {{ app_title }}</strong>
