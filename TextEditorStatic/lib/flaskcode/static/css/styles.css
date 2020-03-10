@@ -78,13 +78,13 @@ body {
     height: 100%;
     overflow: hidden;
 }
-
+/* Robert, ce e asta? */
 #flaskcode-list {
     position: relative;
     height: 100%;
     overflow: auto;
 }
-
+/* si asta? */
 #flaskcode-list .list-header {
     border: none;
     background-color: transparent;
@@ -96,12 +96,23 @@ body {
     padding-right: 0;
 }
 
+#secondary-list{
+    flex: 1 1 auto;
+}
+
 #flaskcode-content {
     position: relative;
     height: 100%;
     overflow: hidden;
     padding: 0;
     box-shadow: -1px 0 3px #cccccc;
+}
+
+#splitter-horizontal {
+  flex: 0 0 auto;
+  height: 18px;
+  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat #535353;
+  cursor: row-resize;
 }
 
 #editor-header {
@@ -279,8 +290,9 @@ div.editor-container {
     max-height: calc(100% - 30px);
 }
 
-#dragbar {
+#splitter-horizontal {
    /*background-color: gray;*/
+   flex: 0 0 auto;
    height:2px;
    float: right;
    width: 100%;
@@ -295,4 +307,94 @@ div.editor-container {
     position:absolute;
     cursor: col-resize;
     z-index:999;
+}
+.page-container {
+  margin: 20px;
+}
+
+
+/* horizontal panel*/
+
+.panel-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid silver;
+  overflow: hidden;
+  
+  /* avoid browser level touch actions */
+  xtouch-action: none;
+}
+
+#panel-left {
+  flex: 0 0 auto;
+  /* only manually resize */
+  padding: 10px;
+  width: 300px;
+  min-height: 200px;
+  min-width: 150px;
+  white-space: nowrap;
+  background: #838383;
+  color: white;
+}
+
+.splitter {
+  flex: 0 0 auto;
+  width: 18px;  
+  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat #535353;
+  min-height: 200px;
+  cursor: col-resize;  
+}
+
+#panel-right {
+  flex: 1 1 auto;
+  /* resizable */
+  padding: 10px;
+  width: 100%;
+  min-height: 200px;
+  min-width: 200px;
+  background: #eee;
+}
+
+
+
+
+.panel-container-vertical {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  border: 1px solid silver;
+  overflow: hidden;
+}
+
+.panel-top {
+  flex: 0 0 auto;
+  /* only manually resize */
+  padding: 10px;
+  height: 150px;
+  width: 100%;
+  white-space: nowrap;
+  background: #838383;
+  color: white;
+}
+
+.splitter-horizontal {
+  flex: 0 0 auto;
+  height: 18px;
+  background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat #535353;
+  cursor: row-resize;
+}
+
+.panel-bottom {
+  flex: 1 1 auto;
+  /* resizable */
+  padding: 10px;
+  min-height: 200px;
+  background: #eee;
+}
+
+label {
+  font-size: 1.2em;
+  display: block;
+  font-weight: bold;
+  margin: 30px 0 10px;
 }

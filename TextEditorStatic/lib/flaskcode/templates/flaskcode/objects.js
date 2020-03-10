@@ -154,12 +154,84 @@ flaskcode.dirname = function (path) {
 
 
 /* draggables */
+/*
+var dragging = false;
+var dragging_horizontal = false;
+   $('#dragbar-vertical').mousedown(function(e){
+       e.preventDefault();
+
+       dragging = true;
+       var main = $('#secondary-list');
+       var wrapper = $('#dir-wrapper');
+       var ghostbar = $('<div>',
+                        {id:'ghostbar',
+                         css: {
+                                width: main.outerWidth(),
+                           			top: e.pageY,
+                                left: main.offset().left
+                               }
+                        }).appendTo('#dir-wrapper');
+
+        $(document).mousemove(function(e){
+          ghostbar.css("top", (e.pageY + 2));
+       });
+
+    });
+
+   $('#dragbar-horizontal').mousedown(function(e){
+       e.preventDefault();
+       dragging_horizontal = true;
+       var main = $('#flaskcode-content');
+       var wrapper = $('#page-row');
+       var ghostbar = $('<div>',
+                        {id:'ghostbar',
+                         css: {
+                                width: main.outerWidth(),
+                                    top: e.pageX,
+                                left: main.offset().left
+                               }
+                        }).appendTo('#page-row');
+
+        $(document).mousemove(function(e){
+          ghostbar.css("left", (e.pageX + 2));
+       });
+
+    });
+   $(document).mouseup(function(e){
+       if (dragging)
+       {
+           var percentage = ((e.pageY - $('#dir-wrapper').offset().top) / $('#dir-wrapper').height()) * 100;
+           var mainPercentage = 100-percentage;
+
+           $('#flaskcode-list').css("height",percentage + "%");
+           $('#secondary-list').css("height",mainPercentage + "%");
+           $('#ghostbar').remove();
+           $(document).unbind('mousemove');
+           dragging = false;
+       }
+    });
+
+
+   $(document).mouseup(function(e){
+       if (dragging_horizontal)
+       {
+           var percentage = ((e.pageX - $('#page-row').offset().left) / $('#page-row').weight()) * 100;
+           var mainPercentage = 100-percentage;
+
+           $('#left-view').css("weight",percentage + "%");
+           $('#flaskcode-content').css("weight",mainPercentage + "%");
+           $('#ghostbar').remove();
+           $(document).unbind('mousemove');
+           dragging_horizontal = false;
+       }
+    });
+*/
  $("#panel-left").resizable({
    handleSelector: ".splitter",
    resizeHeight: false
  });
 
- $("#flaskcode-list").resizable({
-   handleSelector: "#splitter-horizontal",
+ $(".panel-top ").resizable({
+   handleSelector: ".splitter-horizontal",
    resizeWidth: false
  });
