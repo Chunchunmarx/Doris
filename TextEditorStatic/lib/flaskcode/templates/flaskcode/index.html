@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="GenerateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -57,33 +57,46 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="SettingsModal" tabindex="-1" role="dialog" aria-labelledby="SettingsModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="SettingsModalLabel">Settings</h5>
+              
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+           
+          <div class="modal-footer">
+           
+          </div>
+        </div>
+      </div>
+    </div>
     <!--/Modals-->
 
     <div id="page-row" class="row">
-        <div class="col-md-2 col-sm-3 col-xs-3 dir-tree" id="dir-wrapper">
-       
-            <div id="flaskcode-list" class="row" >
+        <div id="dir-wrapper" class="col-md-2 col-sm-3 col-xs-3 dir-tree">
+            <div id="flaskcode-list" class="row " >
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
                 <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
                 <div class="list-container">
                     {{ render_dir_tree(dtree, 'dir-tree') }}
                 </div>
-
             </div>
-             <div id="dragbar"></div>
-             <div id="secondary-list" class="row">
+            <div id="splitter-horizontal"></div>
+            <div id="secondary-list" class="row">
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
                 <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
                 <div class="list-container">
                     {{ render_dir_tree(dtree, 'dir-tree') }}
-
                 </div>
-            </div>       
-      
-    </div>
-
-
-        <div id="flaskcode-content" class="col-md-10 col-sm-9 col-xs-9">
+            </div>    
+        </div>
+        <div id="splitter-vertical"></div>
+        <div id="flaskcode-content" class="col-md-8 col-sm-5 col-xs-9 panel-left">
             <div id="editor-header" class="editor-header well well-sm mb-0">
                 <strong><i class="fa fa-code" aria-hidden="true"></i> {{ app_title }}</strong>
                 &nbsp;
@@ -95,9 +108,12 @@
                 <span class="pull-right hidden-xs" id="header-action-group">
                     
 
-                    <a href="javascript:void(0);" class="header-actions" data-action-id="modalTest" title="Generate"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Generate </span></a>
+                    <a href="javascript:void(0);" class="header-actions" data-action-id="modalGenerate" title="Generate"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Generate </span></a>
+                    &nbsp;|&nbsp;
+                       <a href="javascript:void(0);" class="header-actions" data-action-id="modalSettings" title="Settings"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i>Settings</span></a>
                     &nbsp;|&nbsp;
 
+ 
                     
                     <a href="/runScript" class="header-actions" data-action-id="save" title="Run"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Run</span></a>
                     &nbsp;|&nbsp;
@@ -129,7 +145,7 @@
             <!-- /Editor Widget -->
         </div>
     </div>
-
+<script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/objects.js') }}"></script>
 
 {% endblock %}
 
@@ -138,6 +154,9 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='vendor/jquery-contextMenu/jquery.contextMenu.min.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='vendor/treed/treed.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='css/styles.css') }}" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- to be modified, and put localy --> 
+<script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/jquery-resizable.js') }}"></script>
+
 {% endblock %}
 
 {% block page_scripts %}

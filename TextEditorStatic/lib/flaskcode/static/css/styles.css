@@ -78,13 +78,13 @@ body {
     height: 100%;
     overflow: hidden;
 }
-
+/* Robert, ce e asta? */
 #flaskcode-list {
     position: relative;
     height: 100%;
     overflow: auto;
 }
-
+/* si asta? */
 #flaskcode-list .list-header {
     border: none;
     background-color: transparent;
@@ -279,14 +279,23 @@ div.editor-container {
     max-height: calc(100% - 30px);
 }
 
-#dragbar {
+#splitter-horizontal {
    /*background-color: gray;*/
-   height:2px;
+   flex: 0 0 auto;
+   height: 2px;
    float: right;
    width: 100%;
    cursor: row-resize;
 }
 
+#splitter-vertical {
+  flex: 0 0 auto;
+  width: 2px;  
+  float: left;
+  height: 100%;
+  cursor: col-resize;  
+}
+/*poate trebuie dat remove*/
 #ghostbar {
   width: 100%;
     height: 3px;

@@ -243,16 +243,28 @@ flaskcode.setEditorEvents = function (editor) {
 
     // modal action FOARTE URAT, needs refactor + echivalent html
     editor.addAction({
-        id: 'modalTest',
-        label: 'Save',
-        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S],
+        id: 'modalGenerate',
+        label: 'Generate',
         precondition: '!editorReadonly',
         keybindingContext: '!editorReadonly',
         contextMenuGroupId: '1_modification',
         contextMenuOrder: 1.5,
         run: function (ed) {
-            console.log(1996);
-    var $modal = $('#exampleModal');
+            
+    var $modal = $('#GenerateModal');
+    $modal.modal({show: true, backdrop: 'static'});
+        },
+    });
+    editor.addAction({
+        id: 'modalSettings',
+        label: 'Settings',
+        precondition: '!editorReadonly',
+        keybindingContext: '!editorReadonly',
+        contextMenuGroupId: '1_modification',
+        contextMenuOrder: 1.5,
+        run: function (ed) {
+            
+    var $modal = $('#SettingsModal');
     $modal.modal({show: true, backdrop: 'static'});
         },
     });
