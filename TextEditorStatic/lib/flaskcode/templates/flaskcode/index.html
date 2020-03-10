@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div id="splitter-horizontal"></div>
-            <div id="secondary-list" class="panel-bottom">
+            <div id="secondary-list" class="row">
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
                 <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
                 <div class="list-container">
@@ -162,7 +162,7 @@
 {% block page_scripts %}
 <script type="text/javascript" src="{{ url_for('flaskcode.static', filename='vendor/jquery-contextMenu/jquery.contextMenu.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('flaskcode.static', filename='vendor/monaco-editor/min/vs/loader.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('flaskcode.static', filename='vendor/treed/treed.js') }}"> </script>
+<script type="text/javascript" src="{{ url_for('flaskcode.static', filename='vendor/treed/treed.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/objects.js') }}"></script>
 <script type="text/javascript">
 flaskcode.config.set('pluginsBaseUrl', "{{ url_for('flaskcode.static', filename='vendor') }}");
@@ -172,5 +172,3 @@ flaskcode.config.set('editorTheme', "{{ editor_theme }}");
 </script>
 <script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/flaskcode.js') }}"></script>
 {% endblock %}
-
-
