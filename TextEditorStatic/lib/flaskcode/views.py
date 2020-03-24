@@ -4,6 +4,8 @@ import mimetypes
 from flask import render_template, abort, jsonify, send_file, g, request
 from .utils import write_file, dir_tree, get_file_extension
 from . import blueprint
+import Database 
+import datetime
 
 
 @blueprint.route('/')
@@ -11,6 +13,20 @@ def index():
     dirname = os.path.basename(g.flaskcode_resource_basepath)
     dtree = dir_tree(g.flaskcode_resource_basepath, g.flaskcode_resource_basepath + '/')
     return render_template('flaskcode/index.html', dirname=dirname, dtree=dtree)
+
+
+@blueprint.route('/reportingview')
+def reportingview():
+    python_values = []
+    columns = ['date', 'test_result'] 
+    now = datetime.datetime.now()
+    values_1 = [ now.strftime("%Y-%m-%d"), 'Failed']
+    values_2 = [ now.strftime("%Y-%m-%d"), 'Success']
+    success_list = Database.DatabaseResultsHandler.filter(columns, values_2)
+    fail_list = Database.DatabaseResultsHandler.filter(columns, values_1)
+    python_values.append(len(success_list))
+    python_values.append(len(fail_list))
+    return render_template('flaskcode/reporting_view.html',python_values=python_values)
 
 
 @blueprint.route('/resource-data/<path:file_path>.txt', methods=['GET', 'HEAD'])

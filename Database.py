@@ -34,6 +34,32 @@ class DatabaseResultsHandler:
         for entry in entries:
             print(entry)
 
+    @staticmethod
+    def filter_by_date(value , section_to_filter= None):
+        if section_to_filter is None:
+            return DatabaseResults.query.filter(DatabaseResults.date.like(value+'%'))
+        else :
+            return section_to_filter.filter(DatabaseResults.date.like(value+'%'))
+
+    @staticmethod
+    def filter_by_test_result(value , section_to_filter= None):
+        if section_to_filter is None:
+            return DatabaseResults.query.filter(DatabaseResults.test_result.like(value+'%'))
+        else :
+            return section_to_filter.filter(DatabaseResults.test_result.like(value+'%'))
+
+    @staticmethod
+    def filter(columns,values):
+        filtered_list = None
+        i = 0
+        while i < len(columns):
+            if columns[i] == 'date':
+                filtered_list = DatabaseResultsHandler.filter_by_date(values[i],filtered_list)
+            if columns[i] == 'test_result':
+                filtered_list = DatabaseResultsHandler.filter_by_test_result(values[i],filtered_list)
+            i+=1
+        return filtered_list.all()
+
 # ========================================================================================
 class DatabaseMetadata(db.Model):
     __bind_key__ = 'sql_metadata'

@@ -36,3 +36,21 @@ def generatePython():
     generator_script = os.path.join(Configuration.get_instance().get_external_path(), "SequenceGenerator", "Application.py")
     Helper.run_command("python " + generator_script + " 2 " + resource_data.file_path + " ./")
     return redirect('flaskcode')
+
+
+@app.route('/changeThemeDark',methods=['GET', 'POST'])
+def changeThemeDark():
+    Configuration.get_instance().set_editor_theme("vs-dark")
+    return redirect('flaskcode')
+
+
+@app.route('/changeThemeBlack',methods=['GET', 'POST'])
+def changeThemeBlack():
+    Configuration.get_instance().set_editor_theme("hc-black")
+    return redirect('flaskcode')
+
+
+@app.route('/changeThemeLight',methods=['GET', 'POST'])
+def changeThemeLight():
+    Configuration.get_instance().set_editor_theme("vs")
+    return redirect('flaskcode')

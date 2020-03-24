@@ -154,12 +154,79 @@ flaskcode.dirname = function (path) {
 
 
 /* draggables */
- $("#dir-wrapper").resizable({
-   handleSelector: "#splitter-vertical",
+ $("#dir-wrapper").resizableSafe({
+   handleSelector: "#splitter_1",
    resizeHeight: false
  });
 
- $("#flaskcode-list").resizable({
-   handleSelector: "#splitter-horizontal",
+ $("#editor-container").resizableSafe({
+   handleSelector: "#splitter_1",
+   resizeHeight: false,
+   resizeWidthFrom: 'left'
+ });
+
+ $("#flaskcode-list").resizableSafe({
+   handleSelector: "#splitter_2",
    resizeWidth: false
  });
+
+ function GetResultsToday(param){
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Success', 'Fail'],
+            datasets: [{
+                label: '# of Votes',
+                data: param,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+     var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Success', 'Fail'],
+            datasets: [{
+                label: '# of Votes',
+                data: param,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}

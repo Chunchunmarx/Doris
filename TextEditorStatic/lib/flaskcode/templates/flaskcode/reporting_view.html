@@ -1,10 +1,9 @@
 {% extends 'flaskcode/_base.html' %}
-{% from 'flaskcode/_macros.html' import render_dir_tree %}
 
-{% block page_title %}{{ app_title }} - {{ dirname }}{% endblock %}
+{% block page_title %}{{ app_title }}{% endblock %}
 
 {% block page_content %}
-    <!--Modals-->
+ <!--Modals-->
     <div id="fileNameModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fileNameModalLabel">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
@@ -42,17 +41,10 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Generate Python or UML</h5>
+            
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          
-          <div class="modal-footer">
-            <a href="/generateUML" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate UML</span></a>
-                    &nbsp;|&nbsp;
-
-            <a href="/generatePython" class="header-actions" data-action-id="save" title="Generate"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Generate Python</span></a>
           </div>
         </div>
       </div>
@@ -61,30 +53,13 @@
     <div class="modal fade" id="SettingsModal" tabindex="-1" role="dialog" aria-labelledby="SettingsModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-
           <div class="modal-header">
-                <h5 class="modal-title" id="SettingsModalLabel">Settings</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-          </div>
-          <div class="theme-change">
-
-             <span class="badge badge-theme"><i class="" aria-hidden="true"></i> Change Theme:</span></a>
-             
-             <a href="/changeThemeBlack" class="header-actions" data-action-id="save" title="Black"><span class="badge badge-black">Black </span></a>
-             <a href="/changeThemeLight" class="header-actions" data-action-id="save" title="Light"><span class="badge badge-light">Light </span></a>
-             <a href="/changeThemeDark" class="header-actions" data-action-id="save" title="Dark"><span class="badge badge-dark"> Dark </span></a>
             
-      
-            
-
-          </div>
-           <div class="splitter-theme"></div>
-            <div class="font-change">
               
-              <span class="badge badge-font"> Change Font:</span></a>
-            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
            
           <div class="modal-footer">
            
@@ -98,20 +73,26 @@
         <div id="dir-wrapper" class="dir-tree">
             <div id="flaskcode-list"   >
                 <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
-                <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
+                <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> Filters </div>
                 <div class="list-container">
-                    {{ render_dir_tree(dtree, 'dir-tree') }}
+
+                	<a href="#" onclick="GetResultsToday( {{ python_values }} );">Today</button></a>
+                	<br>
+                    <br>
+
+                	<a href="#" onclick="GetResultsToday();">This Week</button></a>
+                    <br>
+                    <br>
+
+                	<a href="#" onclick="GetResultsToday();">This Month</button></a>
+                    <br>
+                    <br>
+
+                	<a href="#" onclick="GetResultsToday();">This Year</button></a>
+                   
                 </div>
             </div>
-            <div id="splitter-horizontal"></div>
-            <div id="splitter_2" class="splitter-horizontal"></div>
-            <div id="secondary-list" >
-                <!-- <h4 style="white-space:nowrap;"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</h4> -->
-                <div class="list-header well well-sm mb-0"><i class="fa fa-folder" aria-hidden="true"></i> {{ dirname|truncate(20) }}</div>
-                <div class="list-container">
-                    {{ render_dir_tree(dtree, 'dir-tree') }}
-                </div>
-            </div>    
+             
         </div>
         <div id="splitter_1" class="splitter-vertical"></div>
         <div id="editor-header" class="editor-header well well-sm mb-0">
@@ -122,54 +103,29 @@
                 <span id="resource-name" title=""></span>
                 <i id="resource-mod" class="text-danger fa fa-asterisk" aria-hidden="true" style="display:none;"></i>
             </span>
-            <span class="pull-right hidden-xs" id="header-action-group">
-                    
-
-                <a href="javascript:void(0);" class="header-actions" data-action-id="modalGenerate" title="Generate"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Generate </span></a>
-                &nbsp;|&nbsp;
-                    <a href="javascript:void(0);" class="header-actions" data-action-id="modalSettings" title="Settings"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i>Settings</span></a>
-                &nbsp;|&nbsp;
-
- 
-                    
-                <a href="/runScript" class="header-actions" data-action-id="save" title="Run"><span class="badge badge-danger"><i class="fa fa-save" aria-hidden="true"></i> Run</span></a>
-                &nbsp;|&nbsp;
-                <a href="javascript:void(0);" class="header-actions" data-action-id="save" title="Save"><span class="badge badge-primary"><i class="fa fa-save" aria-hidden="true"></i> Save</span></a>
-                &nbsp;|&nbsp;
-                <a href="javascript:void(0);" class="header-actions" data-action-id="reload" title="Reload"><span class="badge badge-primary"><i class="fa fa-refresh" aria-hidden="true"></i> Reload</span></a>
-                &nbsp;|&nbsp;
-
-                <a href="javascript:void(0);" class="header-actions" data-action-id="force-reload" title="Force Reload"><span class="badge badge-danger"><i class="fa fa-retweet" aria-hidden="true"></i></span></a>
-
-                &nbsp;|&nbsp;
-                    <a href="javascript:void(0);" id="toggle-minimap" title="Toggle Minimap"><span class="badge badge-primary"><i class="fa fa-th-list" aria-hidden="true"></i></span></a>
-            </span>
+           
         </div>
        
         <!-- Editor Widget -->
         <div id="editor-container" class="editor-container{% if editor_theme == 'vs' %} light-theme{% endif %}">
-                <div class="editor-preloader" style="display:none;">
-                    <div class="loading-center">
-                        <div class="loading-center-absolute">Requesting...</div>
-                    </div>
-                </div>
-                <div class="editor-notification text-center"></div>
-                <div class="editor-body">
-                    <div class="editor-body-msg">
-                        <h2 class="text-center text-info"><i class="fa fa-code" aria-hidden="true"></i> {{ app_title }}</h2>
-                    </div>
-                </div>
+              <canvas id="myChart" width="400" height="200"></canvas>
         </div>
-        
-        <div id="view-right"></div>
+        <div id="view-right">
+              <canvas id="myPieChart" width="50" height="50"></canvas>
+        </div>
         <!-- /Editor Widget -->
     </div>
 </div>
 <script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/objects.js') }}"></script>
 
+
+
+
+
 {% endblock %}
 
 {% block page_styles %}
+<script type="text/javascript" src="{{ url_for('flaskcode.static', filename='js/Chart.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='vendor/jquery-contextMenu/jquery.contextMenu.min.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('flaskcode.static', filename='vendor/treed/treed.css') }}" />
